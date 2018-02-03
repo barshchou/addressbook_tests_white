@@ -56,10 +56,45 @@ namespace addressbook_tests_white
             dialogue.Get<Button>("uxCloseAddressButton").Click();
         }
 
-        private Window OpenGroupDialogue()
+        public void CloseGroupDialogue()
+        {
+            manager.MainWindow.ModalWindow(GROUPWINTITTLE).Get<Button>("uxCloseAddressButton").Click(); 
+            
+        }
+
+        public Window OpenGroupDialogue()
         {
             manager.MainWindow.Get<Button>("groupButton").Click();
             return manager.MainWindow.ModalWindow(GROUPWINTITTLE);
+        }
+
+        public void RemoveGroup()
+        {
+            Window dialogue = OpenGroupDialogue();
+            Tree tree = dialogue.Get<Tree>("uxAddressTreeView");
+            TreeNode root = tree.Nodes[0];
+            TreeNode item = root.Nodes[0];
+            item.Click();
+            dialogue.Get<Button>("uxDeleteAddressButton").Click();
+            dialogue.Get<Button>("uxOKAddressButton").Click();
+            CloseGroupDialogue(dialogue);
+        }
+
+        public List<TreeNode> CheckNotSingleGroupPresent()
+        {
+            Window dialogue = OpenGroupDialogue();
+            Tree tree = dialogue.Get<Tree>("uxAddressTreeView");
+            TreeNode root = tree.Nodes[0];
+
+            List<TreeNode> nodes = new List<TreeNode>();
+
+            foreach (TreeNode treeItem in root.Nodes)
+            {
+                nodes.Add(treeItem);
+            }
+            
+            CloseGroupDialogue(dialogue);
+            return nodes;
         }
     }
 }

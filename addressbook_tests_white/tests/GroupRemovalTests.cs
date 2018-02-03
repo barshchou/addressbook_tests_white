@@ -8,22 +8,32 @@ using NUnit.Framework;
 namespace addressbook_tests_white
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+
+    public class GroupRemovalTests : TestBase
     {
         [Test]
-        public void GroupCreation()
+
+        public void GroupRemoveTest()
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            GroupData newGroup = new GroupData()
+            GroupData group = new GroupData()
             {
-                Name = "White_test"
+                Name = "Test"
             };
+            
+            if (app.Groups.CheckNotSingleGroupPresent().Count() < 2)
+            {
+                //app.Groups.CloseGroupDialogue();
+                app.Groups.AddGroup(group);
+            }
 
-            app.Groups.AddGroup(newGroup);
+            //Actions
+            app.Groups.RemoveGroup();
 
+            //Comparing lists before and after removal
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(newGroup);
+            oldGroups.Remove(group);
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
