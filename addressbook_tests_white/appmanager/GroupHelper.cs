@@ -68,15 +68,23 @@ namespace addressbook_tests_white
             return manager.MainWindow.ModalWindow(GROUPWINTITTLE);
         }
 
-        public void RemoveGroup()
+        public void RemoveGroup(GroupData group)
         {
             Window dialogue = OpenGroupDialogue();
             Tree tree = dialogue.Get<Tree>("uxAddressTreeView");
             TreeNode root = tree.Nodes[0];
-            TreeNode item = root.Nodes[0];
-            item.Click();
+            List<TreeNode> nodes = new List<TreeNode>();
+
+            foreach (TreeNode treeItem in root.Nodes)
+            {
+                if (treeItem.Name == group.Name)
+                {
+                    treeItem.Click();
+                }
+            }
             dialogue.Get<Button>("uxDeleteAddressButton").Click();
             dialogue.Get<Button>("uxOKAddressButton").Click();
+
             CloseGroupDialogue(dialogue);
         }
 

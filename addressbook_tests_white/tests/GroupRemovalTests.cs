@@ -15,8 +15,6 @@ namespace addressbook_tests_white
 
         public void GroupRemoveTest()
         {
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-
             GroupData group = new GroupData()
             {
                 Name = "Test"
@@ -28,12 +26,14 @@ namespace addressbook_tests_white
                 app.Groups.AddGroup(group);
             }
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            GroupData toBeRemoved = oldGroups[1];
             //Actions
-            app.Groups.RemoveGroup();
+            app.Groups.RemoveGroup(toBeRemoved);
 
             //Comparing lists before and after removal
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Remove(group);
+            oldGroups.RemoveAt(1);
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
