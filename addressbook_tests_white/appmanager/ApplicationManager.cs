@@ -14,6 +14,7 @@ namespace addressbook_tests_white
     {
         public static string WINTITTLE = "Free Address Book";
         private GroupHelper groupHelper;
+        private ContactHelper contactHelper;
 
         public ApplicationManager()
         {
@@ -21,7 +22,7 @@ namespace addressbook_tests_white
             MainWindow = app.GetWindow(WINTITTLE);
                         
             groupHelper = new GroupHelper(this);
-            
+            contactHelper = new ContactHelper(this);
         }
 
         public Window MainWindow
@@ -37,6 +38,11 @@ namespace addressbook_tests_white
         public GroupHelper Groups
         {
             get { return groupHelper; }
+        }
+
+        public ContactHelper Contacts
+        {
+            get { return contactHelper; }
         }
     }
 }

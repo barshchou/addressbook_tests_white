@@ -58,8 +58,7 @@ namespace addressbook_tests_white
 
         public void CloseGroupDialogue()
         {
-            manager.MainWindow.ModalWindow(GROUPWINTITTLE).Get<Button>("uxCloseAddressButton").Click(); 
-            
+            manager.MainWindow.ModalWindow(GROUPWINTITTLE).Get<Button>("uxCloseAddressButton").Click();
         }
 
         public Window OpenGroupDialogue()
