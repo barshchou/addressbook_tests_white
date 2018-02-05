@@ -69,11 +69,11 @@ namespace addressbook_tests_white
             return rows;
         }
         
-        public List<TableRow> GetContactList()
+        public List<ContactData> GetContactList()
         {
             Table dataGrid = manager.MainWindow.Get<Table>(SearchCriteria.ByControlType(ControlType.Table));
             
-            List<TableRow> rows = new List<TableRow>();
+            List<ContactData> rows = new List<ContactData>();
             
             foreach (TableRow tableRows in dataGrid.Rows)
             {
