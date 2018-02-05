@@ -26,19 +26,19 @@ namespace addressbook_tests_white
                 app.Contacts.AddContact(contact);
             }
             
-            //List<ContactData> oldContacts = app.Contacts.GetContactList();
-            //ContactData toBeRemoved = oldContacts[0];
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            ContactData toBeRemoved = oldContacts[0];
 
             //Actions
             app.Contacts.RemoveContact();
 
             //Comparing lists before and after removal
-            /*List<ContactData> newContacts = app.Contacts.GetContactList();
-            oldContacts.RemoveAt(1);
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.RemoveAt(0);
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
-            */
+            
         }
     }
 }
